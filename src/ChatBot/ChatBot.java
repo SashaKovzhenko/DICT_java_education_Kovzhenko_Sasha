@@ -6,8 +6,7 @@ public class ChatBot {
     public static void main(String []args) {
         System.out.println("Hello! My name is Jora.\nI was created in 2021.\nPlease, remind me your name.");
         Scanner scanner = new Scanner(System.in);
-        String response;
-        response = scanner.nextLine();
+        String response = scanner.nextLine();
         System.out.println("What a great name you have, "+response);
         System.out.println("Let me guess your age.");
         System.out.println("Enter remainders of dividing your age by 3, 5 and 7");
@@ -32,19 +31,13 @@ public class ChatBot {
         System.out.println("4. To interrupt the execution of the program.");
         String response_1;
         while (true) {
-            response_1 = scanner.nextLine();
-            if (response_1.equals("1") ) {
-                System.out.println("Please, try again");
-            }
-            if (response_1.equals("3") ) {
-                System.out.println("Please, try again");
-            }
-            if (response_1.equals("4") ) {
-                System.out.println("Please, try again");
-            }
+            response_1 = scanner.next();
             if (response_1.equals ("2")) {
                 System.out.println("Great, you right!\nGoodbye, have a nice day!");
                 break;
+            }
+                else {
+                System.out.println("Please, try again");
             }
         }
     }
