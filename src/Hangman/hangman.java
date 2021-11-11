@@ -5,7 +5,7 @@ import static java.lang.Math.*;
 public class hangman {
     public static void main(String[] args){
         Scanner in = new Scanner(System.in);
-        int min = 1, max = 4, test = 0;
+        int min = 1, max = 4, test = 0, test1 = 1;
         System.out.println("HANGMAN\nThe game will be available soon.");
         String word = "";
         char word2;
@@ -34,8 +34,19 @@ public class hangman {
         System.out.println(w);
         for (int i1 = 0; i1 < 8;i1++ ){
             test = 0;
-            System.out.print("Enter your char:");
-            word2 = in.next().charAt(0);
+            do{
+                test1 = 1;
+                System.out.print("Enter your char:");
+                word2 = in.next().charAt(0);
+                if (word2 == 'A'|| word2 == 'B'|| word2 == 'C'|| word2 == 'D'|| word2 == 'E'|| word2 == 'F'|| word2 == 'G'||
+                        word2 == 'H'|| word2 == 'I'|| word2 == 'J'|| word2 == 'K'|| word2 == 'L'|| word2 == 'M'|| word2 == 'N'||
+                        word2 == 'O'|| word2 == 'P'|| word2 == 'Q'|| word2 == 'R'|| word2 == 'S'|| word2 == 'T'|| word2 == 'U'||
+                        word2 == 'V'|| word2 == 'W'|| word2 == 'X'|| word2 == 'Y'|| word2 == 'Z') {
+                            test1 = 0;
+                            System.out.println("Please enter a lowercase English letter.");
+                }
+            }while(test1 == 0);
+
             for (int i2 = 0; i2 <word.length(); i2++) {
                 if (word2 == word.charAt(i2)){
                     w[i2] = word2;
@@ -56,7 +67,8 @@ public class hangman {
                 System.out.println("That letter doesn`t appear in the word.");
             }
             else if (test == 2) {
-                System.out.println("No improvements.");
+                System.out.println("Your already guessed this letter.");
+                i1--;
             }
         }
         System.out.println(word);
