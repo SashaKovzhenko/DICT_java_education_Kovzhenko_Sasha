@@ -5,32 +5,59 @@ import static java.lang.Math.*;
 public class CoffeeMachine {
     public static void main(String[] arg) {
         Scanner in  = new Scanner(System.in);
-        int cup, waterHas, milkHas, coffee_beansHas, aHasWater, aHasMilk, aHasCoffee_beans, minCup;
-        int water = 200, milk = 50, coffee_beans = 15;
-        System.out.println("Write how many ml of water the coffee machine has: ");
-        waterHas = in.nextInt();
-        System.out.println("Write how many ml of milk the coffee machine has: ");
-        milkHas = in.nextInt();
-        System.out.println("Write how many grams of coffee beans the coffee machine has: ");
-        coffee_beansHas = in.nextInt();
-        System.out.println("Write how many cups of coffee you will need: ");
-        cup = in.nextInt();
-
-        aHasWater = waterHas/water;
-        aHasMilk = milkHas/milk;
-        aHasCoffee_beans = coffee_beansHas/coffee_beans;
-
-        minCup = min(min(aHasWater, aHasMilk), aHasCoffee_beans);
-
-        if (minCup > cup){
-            cup = minCup - cup;
-            System.out.print("Yes, I can make that amount of coffee (and even " +cup+ " more than that)");
+        int coffeeCup, waterHas = 400, milkHas = 540, coffee_beansHas = 120, disp_cupsHas = 550, moneyHas = 550, aHasWater, waterAdd, milkAdd, coffee_beansAdd, disp_cupsAdd;
+        int water_Latte = 350, milk_Latte = 75, coffee_beans_Latte = 20, money_Latte = 7;
+        int water_Cappuccino = 200, milk_Cappuccino = 100, coffee_beans_Cappuccino = 12, money_Cappuccino = 6;
+        int water_Espresso = 350, coffee_beans_Espresso = 20, money_Espresso = 7;
+        boolean cycle = true;
+        String action;
+        do {
+            System.out.println("The coffee machine has:");
+            System.out.println(waterHas+" of water");
+            System.out.println(milkHas+" of milk");
+            System.out.println(coffee_beansHas+" of coffee beans");
+            System.out.println(disp_cupsHas+" of disposable cups");
+            System.out.println(moneyHas+" of money");
+            System.out.println("Write action (buy, fill, take): ");
+            action = in.nextLine();
+            if (action.equals("buy")) {
+                System.out.println("Choose your coffee: (1 - Espresso, 2 - Latte, 3 - Cappuccino) ");
+                coffeeCup = in.nextInt();
+                if (coffeeCup == 1) {
+                    waterHas = waterHas - water_Espresso;
+                    coffee_beansHas = coffee_beansHas - coffee_beans_Espresso;
+                    moneyHas = moneyHas + money_Espresso;
+                    disp_cupsHas--;
+                } else if (coffeeCup == 2) {
+                    waterHas = waterHas - water_Latte;
+                    milkHas = milkHas - milk_Latte;
+                    coffee_beansHas = coffee_beansHas - coffee_beans_Latte;
+                    moneyHas = moneyHas + money_Latte;
+                    disp_cupsHas--;
+                } else if (coffeeCup == 3) {
+                    waterHas = waterHas - water_Cappuccino;
+                    milkHas = milkHas - milk_Cappuccino;
+                    coffee_beansHas = coffee_beansHas - coffee_beans_Cappuccino;
+                    moneyHas = moneyHas + money_Cappuccino;
+                    disp_cupsHas--;
+                }
+            }else if (action.equals("fill")) {
+            System.out.println("Write how many ml of water you want to add: ");
+            waterAdd = in.nextInt();
+            waterHas = waterHas + waterAdd;
+            System.out.println("Write how many ml of milk you want to add: ");
+            milkAdd = in.nextInt();
+            milkHas = milkHas + milkAdd;
+            System.out.println("Write how many grams of coffee beans you want to add: ");
+            coffee_beansAdd = in.nextInt();
+            coffee_beansHas = coffee_beansHas + coffee_beansAdd;
+            System.out.println("Write how many disposable coffee cups you want to add: ");
+            disp_cupsAdd = in.nextInt();
+            disp_cupsHas = disp_cupsHas + disp_cupsAdd;
+        }else if (action.equals("take")){
+            moneyHas = 0;
         }
-        else if (minCup == cup){
-            System.out.print("Yes, I can make that amount of coffee");
-        }
-        else{
-            System.out.print("No, I can only "+minCup+" cups of coffee");
-        }
+
+        }while (cycle == true);
     }
 }
