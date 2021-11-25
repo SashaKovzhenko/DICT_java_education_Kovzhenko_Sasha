@@ -9,17 +9,16 @@ public class CoffeeMachine {
         int water_Latte = 350, milk_Latte = 75, coffee_beans_Latte = 20, money_Latte = 7;
         int water_Cappuccino = 200, milk_Cappuccino = 100, coffee_beans_Cappuccino = 12, money_Cappuccino = 6;
         int water_Espresso = 350, coffee_beans_Espresso = 20, money_Espresso = 7;
-        boolean cycle = true;
+        boolean cycle = true, ent = true;
         String action;
         do {
-            System.out.println("The coffee machine has:");
-            System.out.println(waterHas+" of water");
-            System.out.println(milkHas+" of milk");
-            System.out.println(coffee_beansHas+" of coffee beans");
-            System.out.println(disp_cupsHas+" of disposable cups");
-            System.out.println(moneyHas+" of money");
-            System.out.println("Write action (buy, fill, take): ");
-            action = in.nextLine();
+            System.out.print("Write action (buy, fill, take, remaining,exit): ");
+            do {
+                action = in.nextLine();
+                if (action.equals("buy")||action.equals("take")||action.equals("remaining")||action.equals("fill")||action.equals("exit")){
+                    ent = false;
+                }
+            }while(ent == true);
             if (action.equals("buy")) {
                 System.out.println("Choose your coffee: (1 - Espresso, 2 - Latte, 3 - Cappuccino) ");
                 coffeeCup = in.nextInt();
@@ -56,7 +55,16 @@ public class CoffeeMachine {
             disp_cupsHas = disp_cupsHas + disp_cupsAdd;
         }else if (action.equals("take")){
             moneyHas = 0;
-        }
+        }else if (action.equals("remaining")){
+                System.out.println(("The coffee machine has: "));
+                System.out.println((waterHas+" of water"));
+                System.out.println((milkHas+" of milk"));
+                System.out.println((coffee_beansHas+" of coffee beans"));
+                System.out.println((disp_cupsHas+" of disposable cups"));
+                System.out.println((moneyHas+" of money"));
+            }else if (action.equals("exit")){
+                System.exit(0);
+            }
 
         }while (cycle == true);
     }
