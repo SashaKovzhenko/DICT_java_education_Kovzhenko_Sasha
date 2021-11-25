@@ -14,31 +14,54 @@ public class CoffeeMachine {
         do {
             System.out.print("Write action (buy, fill, take, remaining,exit): ");
             do {
-                action = in.nextLine();
+                action =  coffee_machine.doing();
                 if (action.equals("buy")||action.equals("take")||action.equals("remaining")||action.equals("fill")||action.equals("exit")){
                     ent = false;
                 }
             }while(ent == true);
             if (action.equals("buy")) {
-                System.out.println("Choose your coffee: (1 - Espresso, 2 - Latte, 3 - Cappuccino) ");
+                System.out.println("Choose your coffee: (1 - Espresso, 2 - Latte, 3 - Cappuccino, 0 - back to main menu) ");
                 coffeeCup = in.nextInt();
                 if (coffeeCup == 1) {
                     waterHas = waterHas - water_Espresso;
                     coffee_beansHas = coffee_beansHas - coffee_beans_Espresso;
                     moneyHas = moneyHas + money_Espresso;
                     disp_cupsHas--;
+                    if (waterHas < 0 || coffee_beansHas < 0 || moneyHas < 0 || disp_cupsHas < 0){
+                        System.out.println("I have enough resources, making you a coffee!");
+                        waterHas = waterHas+water_Espresso;
+                        coffee_beansHas = coffee_beansHas+coffee_beans_Espresso;
+                        moneyHas = moneyHas-money_Espresso;
+                        disp_cupsHas++;
+                    }
                 } else if (coffeeCup == 2) {
                     waterHas = waterHas - water_Latte;
                     milkHas = milkHas - milk_Latte;
                     coffee_beansHas = coffee_beansHas - coffee_beans_Latte;
                     moneyHas = moneyHas + money_Latte;
                     disp_cupsHas--;
+                    if (waterHas < 0 || coffee_beansHas < 0 || moneyHas < 0 || disp_cupsHas < 0){
+                        System.out.println("I have enough resources, making you a coffee!");
+                        waterHas = waterHas+water_Latte;
+                        coffee_beansHas = coffee_beansHas+coffee_beans_Latte;
+                        moneyHas = moneyHas-money_Latte;
+                        disp_cupsHas++;
+                    }
                 } else if (coffeeCup == 3) {
                     waterHas = waterHas - water_Cappuccino;
                     milkHas = milkHas - milk_Cappuccino;
                     coffee_beansHas = coffee_beansHas - coffee_beans_Cappuccino;
                     moneyHas = moneyHas + money_Cappuccino;
                     disp_cupsHas--;
+                    if (waterHas < 0 || coffee_beansHas < 0 || moneyHas < 0 || disp_cupsHas < 0){
+                        System.out.println("I have enough resources, making you a coffee!");
+                        waterHas = waterHas+water_Cappuccino;
+                        coffee_beansHas = coffee_beansHas+coffee_beans_Cappuccino;
+                        moneyHas = moneyHas-money_Cappuccino;
+                        disp_cupsHas++;
+                    }
+                }else if (coffeeCup == 0){
+                    ent = false;
                 }
             }else if (action.equals("fill")) {
             System.out.println("Write how many ml of water you want to add: ");
@@ -54,7 +77,9 @@ public class CoffeeMachine {
             disp_cupsAdd = in.nextInt();
             disp_cupsHas = disp_cupsHas + disp_cupsAdd;
         }else if (action.equals("take")){
-            moneyHas = 0;
+                System.out.println("I gave you "+moneyHas);
+                moneyHas = 0;
+
         }else if (action.equals("remaining")){
                 System.out.println(("The coffee machine has: "));
                 System.out.println((waterHas+" of water"));
@@ -67,5 +92,14 @@ public class CoffeeMachine {
             }
 
         }while (cycle == true);
+    }
+}
+
+class coffee_machine {
+    public static String doing() {
+        Scanner in = new Scanner(System.in);
+        String doing = in.nextLine();
+        return doing;
+
     }
 }
