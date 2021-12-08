@@ -5,58 +5,46 @@ public class TicTacToe {
     public static void main(String[] args){
         Scanner in = new Scanner(System.in);
         int num = 0;
+        int correct = 0, correct2 = 0;
+        boolean end = false;
+        int[] coordinates = new int[2];
         String field;
+        char[] field2 = new char[9];
         System.out.print("Enter cells: ");
         field = in.next();
-        System.out.println("-----");
-        for (int i = 0; i < 3; i ++){
-            System.out.print("|");
-            for (int i1 = 0; i1 < 3; i1 ++){
-                System.out.print(field.charAt(num));
-                num ++;
-            }System.out.println("|");
-        }System.out.println("-----");
-        if (((field.charAt(0) == 'X' && field.charAt(1) == 'X' && field.charAt(2) == 'X') ||
-                (field.charAt(3) == 'X' && field.charAt(4) == 'X' && field.charAt(5) == 'X') ||
-                (field.charAt(6) == 'X' && field.charAt(7) == 'X' && field.charAt(8) == 'X') ||
-                (field.charAt(0) == 'X' && field.charAt(3) == 'X' && field.charAt(6) == 'X') ||
-                (field.charAt(1) == 'X' && field.charAt(4) == 'X' && field.charAt(7) == 'X') ||
-                (field.charAt(2) == 'X' && field.charAt(5) == 'X' && field.charAt(8) == 'X') ||
-                (field.charAt(0) == 'X' && field.charAt(4) == 'X' && field.charAt(8) == 'X') ||
-                (field.charAt(2) == 'X' && field.charAt(4) == 'X' && field.charAt(6) == 'X'))
-        && ((field.charAt(0) == 'O' && field.charAt(1) == 'O' && field.charAt(2) == 'O') ||
-                (field.charAt(3) == 'O' && field.charAt(4) == 'O' && field.charAt(5) == 'O') ||
-                (field.charAt(6) == 'O' && field.charAt(7) == 'O' && field.charAt(8) == 'O') ||
-                (field.charAt(0) == 'O' && field.charAt(3) == 'O' && field.charAt(6) == 'O') ||
-                (field.charAt(1) == 'O' && field.charAt(4) == 'O' && field.charAt(7) == 'O') ||
-                (field.charAt(2) == 'O' && field.charAt(5) == 'O' && field.charAt(8) == 'O') ||
-                (field.charAt(0) == 'O' && field.charAt(4) == 'O' && field.charAt(8) == 'O') ||
-                (field.charAt(2) == 'O' && field.charAt(4) == 'O' && field.charAt(6) == 'O'))){
-            System.out.println("Impossible");
-        }else if ((field.charAt(0) == 'X' && field.charAt(1) == 'X' && field.charAt(2) == 'X') ||
-                (field.charAt(3) == 'X' && field.charAt(4) == 'X' && field.charAt(5) == 'X') ||
-                (field.charAt(6) == 'X' && field.charAt(7) == 'X' && field.charAt(8) == 'X') ||
-                (field.charAt(0) == 'X' && field.charAt(3) == 'X' && field.charAt(6) == 'X') ||
-                (field.charAt(1) == 'X' && field.charAt(4) == 'X' && field.charAt(7) == 'X') ||
-                (field.charAt(2) == 'X' && field.charAt(5) == 'X' && field.charAt(8) == 'X') ||
-                (field.charAt(0) == 'X' && field.charAt(4) == 'X' && field.charAt(8) == 'X') ||
-                (field.charAt(2) == 'X' && field.charAt(4) == 'X' && field.charAt(6) == 'X')){
-            System.out.println("X win");
-        }else if ((field.charAt(0) == 'O' && field.charAt(1) == 'O' && field.charAt(2) == 'O') ||
-                (field.charAt(3) == 'O' && field.charAt(4) == 'O' && field.charAt(5) == 'O') ||
-                (field.charAt(6) == 'O' && field.charAt(7) == 'O' && field.charAt(8) == 'O') ||
-                (field.charAt(0) == 'O' && field.charAt(3) == 'O' && field.charAt(6) == 'O') ||
-                (field.charAt(1) == 'O' && field.charAt(4) == 'O' && field.charAt(7) == 'O') ||
-                (field.charAt(2) == 'O' && field.charAt(5) == 'O' && field.charAt(8) == 'O') ||
-                (field.charAt(0) == 'O' && field.charAt(4) == 'O' && field.charAt(8) == 'O') ||
-                (field.charAt(2) == 'O' && field.charAt(4) == 'O' && field.charAt(6) == 'O')) {
-            System.out.println("O win");
-        }else if (field.charAt(0) == '_' || field.charAt(1) == '_' || field.charAt(2) == '_' ||
-                field.charAt(3) == '_' || field.charAt(4) == '_' || field.charAt(5) == '_' ||
-                field.charAt(6) == '_' || field.charAt(7) == '_' || field.charAt(8) == '_'){
-            System.out.println("Game not finished");
-        }else{
-            System.out.println("Draw");
-        }
+        for (int i5 = 0; i5 < 9; i5 ++){
+            field2[i5] = field.charAt(i5);
+        }do{
+            num = 0;
+            correct2 = 0;
+            end = false;
+            System.out.println("-----");
+            for (int i = 0; i < 3; i ++){
+                System.out.print("|");
+                for (int i1 = 0; i1 < 3; i1 ++){
+                    System.out.print(field2[num]);
+                    num ++;
+                }System.out.println("|");
+            }System.out.println("-----");
+            System.out.print("Enter coordinates: ");
+            for (int i2 = 0; i2 < 2; i2 ++){
+                coordinates[i2] = in.nextInt();
+            }for (int i3 = 1; i3 < 4; i3 ++){
+                for (int i4 = 1; i4 < 4; i4 ++){
+                    if (coordinates[0] == i3 && coordinates[1] == i4){
+                        correct = correct2;
+                        end = true;
+                    }correct2 ++;
+                }
+            }if (end == false){
+                System.out.println("Coordinates should be from 1 to 3");
+            }if (end == true){
+                if (field2[correct] == 'X' || field2[correct] == 'O'){
+                    System.out.println("This cell is occupied! Choose another one!");
+                }else{
+                    field2[correct] = 'X';
+                }
+            }
+        }while (true);
     }
 }
