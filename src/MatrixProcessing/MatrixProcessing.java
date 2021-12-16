@@ -6,10 +6,11 @@ public class MatrixProcessing {
         Scanner in = new Scanner(System.in);
         int menu;
         do{
-            System.out.println("1. Add matrices");
-            System.out.println("2. Multiply matrix by a const");
-            System.out.println("3. Multiply matrices");
-            System.out.println("4. EXIT");
+            System.out.println("1. Add matrices\n" +
+                    "2. Multiply matrix by a constant\n" +
+                    "3. Multiply matrices\n" +
+                    "4. Transport\n" +
+                    "5. Exit");
             System.out.print("Your choice: ");
             menu = in.nextInt();
             switch(menu){
@@ -104,10 +105,60 @@ public class MatrixProcessing {
                         System.out.println("ERROR");
                     }
                 case 4:
+                    int sizeG[] = new int[2];
+                    System.out.print("Enter size matrix G: ");
+                    for (int i = 0; i < 2; i++) {
+                        sizeG[i] = in.nextInt();
+                    }double[][] matrix_G = new double[sizeG[0]][sizeG[1]];
+                    System.out.println("Enter matrix G: ");
+                    for (int i = 0; i < sizeG[0]; i++) {
+                        for (int i1 = 0; i1 < sizeG[1]; i1++) {
+                            matrix_G[i][i1] = in.nextDouble();
+                        }
+                    }int transport;
+                    System.out.println("1. Main diagonal\n" +
+                            "2. Side diagonal\n" +
+                            "3. Vertical line\n" +
+                            "4. Horizontal line");
+                    transport = in.nextInt();
+                    switch (transport) {
+                        case 1:
+                            double[][] matrix_Gt_m_d = new double[sizeG[1]][sizeG[0]];
+                            for (int i1 = 0; i1 < sizeG[1]; i1++) {
+                                for (int i = 0; i < sizeG[0]; i++) {
+                                    matrix_Gt_m_d[i1][i] = matrix_G[i][i1];
+                                    System.out.print(matrix_Gt_m_d[i1][i] + " ");
+                                }System.out.println();
+                            }break;
+                        case 2:
+                            double[][] matrix_Gt_s_d = new double[sizeG[1]][sizeG[0]];
+                            for (int i = 0; i < sizeG[0]; i++) {
+                                for (int i1 = 0; i1 < sizeG[1]; i1++) {
+                                    matrix_Gt_s_d[i1][i] = matrix_G[sizeG[0]-1-i][sizeG[1]-1-i1];
+                                    System.out.print(matrix_Gt_s_d[i1][i] + " ");
+                                }System.out.println();
+                            }break;
+                        case 3:
+                            double[][] matrix_Gt_v = new double[sizeG[0]][sizeG[1]];
+                            for (int i = 0; i < sizeG[0]; i++) {
+                                for (int i1 = 0; i1 < sizeG[1]; i1++) {
+                                    matrix_Gt_v[i][i1] = matrix_G[i][sizeG[1] - 1 - i1];
+                                    System.out.print(matrix_Gt_v[i][i1] + " ");
+                                }System.out.println();
+                            }break;
+                        case 4:
+                            double[][] matrix_Gt_g = new double[sizeG[0]][sizeG[1]];
+                            for (int i = 0; i < sizeG[0]; i++) {
+                                for (int i1 = 0; i1 < sizeG[1]; i1++) {
+                                    matrix_Gt_g[i][i1] = matrix_G[sizeG[0] - 1 - i][i1];
+                                    System.out.print(matrix_Gt_g[i][i1] + " ");
+                                }System.out.println();
+                            }break;
+                    }break;
+                case 5:
                     System.exit(0);
                     break;
             }
         }while (true);
-
     }
 }
